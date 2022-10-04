@@ -1,3 +1,3 @@
-module godatabase
+module godb
 
 go 1.18

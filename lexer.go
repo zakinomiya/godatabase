@@ -1,4 +1,4 @@
-package main
+package godb
 
 type Token struct {
 	loc    int

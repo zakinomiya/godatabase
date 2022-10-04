@@ -1,4 +1,4 @@
-package main
+package godb
 
 import (
 	"bufio"
@@ -40,7 +40,7 @@ func getMetaCommand(statement string) Builtin {
 	}
 }
 
-func main() {
+func Run(user string, password string) error {
 	inMiddle := false
 	var stmtBuilder strings.Builder
 	stmtBuilder.Grow(100)
@@ -66,14 +66,14 @@ func main() {
 
 		stmt := stmtBuilder.String()
 		if stmt[len(stmt)-1] != ';' {
-      stmtBuilder.WriteByte(' ')
+			stmtBuilder.WriteByte(' ')
 			inMiddle = true
 			continue
 		} else {
 			inMiddle = false
 		}
 
-    stmtBuilder.Reset()
+		stmtBuilder.Reset()
 		if strings.HasPrefix(stmt, ".") {
 			getMetaCommand(stmt)()
 			continue
@@ -81,7 +81,7 @@ func main() {
 
 		if stmt == ".exit" {
 			fmt.Println("Bye")
-			return
+			return nil
 		}
 
 		tokenizer := NewTokenizer(stmt)
