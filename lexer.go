@@ -42,7 +42,7 @@ func (t *Tokenizer) add() {
 
 func (t *Tokenizer) skip() {
 	t.ptr++
-  t.offset = t.ptr
+	t.offset = t.ptr
 }
 
 func (t *Tokenizer) next() (byte, bool) {
